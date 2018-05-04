@@ -1,5 +1,6 @@
 <?php
 
+use \Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +12,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/admin', 'AdminController');
+//Route::get('/{post}', 'BlogController@show');
+
+Route::get('/', 'UserController@index')->name('user');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
