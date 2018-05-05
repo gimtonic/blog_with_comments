@@ -40,14 +40,12 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('users')->insert(
-            ['email' => 'john@example.com', 'votes' => 0]
-        );
+        var_dump($request);
 
-        $posts = DB::table('posts')->get();
-        return view('admin.index',[
-            'posts'=> $posts
-        ]);
+//        $posts = DB::table('posts')->get();
+//        return view('admin.index',[
+//            'posts'=> $posts
+//        ]);
     }
 
     /**

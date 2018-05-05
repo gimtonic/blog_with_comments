@@ -13,3 +13,5 @@ yarn-error.log
 base.db
 yarn.lock
 /public
+public/js/
+
