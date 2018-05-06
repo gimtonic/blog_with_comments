@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-
+use App\Post;
 use Illuminate\Http\Request;
-use DB;
+use App\Http\Controllers\Controller;
+use App\User;
 
-class AdminController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $posts = DB::table('posts')->get();
+        $posts = Post::all();
+        $users = User::all();
         return view('admin.index',[
-            'posts'=> $posts
+            'posts'=> $posts,
+            'users'=>$users
         ]);
     }
 
@@ -40,56 +43,65 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request);
+        Post::create($request->all());
 
-//        $posts = DB::table('posts')->get();
-//        return view('admin.index',[
-//            'posts'=> $posts
-//        ]);
+        return redirect()->route('admin.post.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show($id)
     {
-        //
+
+        $post = Post::where('id', $id)->first();
+
+        return view('admin.show',[
+            'post' => $post
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.edit',[
+            'post'   =>  $post,
+        ]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->except('id'));
+
+        return redirect()->route('admin.post.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.post.index');
     }
 }

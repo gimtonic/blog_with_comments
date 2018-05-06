@@ -11,11 +11,17 @@ use \Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/','BlogController@index')->name('blog.index');
+Route::get('/blog/{id?}','BlogController@show')->name('blog.show');
 
-Route::resource('/admin', 'AdminController');
-//Route::get('/{post}', 'BlogController@show');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth'] ], function () {
 
-Route::get('/', 'UserController@index')->name('user');
+    Route::resource('/post', 'PostController', ['as'=>'admin']);
+
+});
+
+
+
 
 Auth::routes();
 

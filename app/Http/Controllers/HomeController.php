@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\User;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -24,9 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = DB::table('posts')->get();
+        $posts = Post::all();
+        $users = User::all();
         return view('admin.index',[
-            'posts'=> $posts
+            'posts'=> $posts,
+            'users'=>$users
         ]);
     }
 

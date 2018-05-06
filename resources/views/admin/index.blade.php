@@ -8,12 +8,12 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="jimbotron">
-                                <p class="text-center"><span class="label label-primary">Кол-во пользователей</span></p>
+                                <p class="text-center"><span class="label label-primary">Кол-во пользователей: {{$users->count()}} </span></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="jimbotron">
-                                <p class="text-center"><span class="label label-primary">Кол-во постов</span></p>
+                                <p class="text-center"><span class="label label-primary">Кол-во постов:   {{$posts->count()}}</span></p>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -34,26 +34,46 @@
                             <th class="text-center">Статус публикации</th>
                             <th class="text-center">Заголовок</th>
                         </tr>
-                        <tr>
+
                             {{-- Blade if and else --}}
 
                             @if( $posts->count() )
 
-                                <td class="text-center">ID</td>
-                                <td class="text-center">Дата изменения</td>
-                                <td class="text-center">Статус публикации</td>
-                                <td class="text-center">Заголовок</td>
+                                @foreach ($posts as $post)
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="{{ route ('admin.post.show',$post->id) }}" >
+                                            {{ $post->id }}
+                                        </a>
+                                    </td>
+                                    <td class="text-center">{{$post->modified_at}}</td>
+                                    <td class="text-center">{{$post->published}}</td>
+                                    <td class="text-center">{{$post->title}}</td>
+                                    <td class="text-right">
+                                        <form onsubmit="if(confirm('Delete?')){return true}else{ return false }" action="{{route('admin.post.destroy',
+                        $post)}}" method="post">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            {{ csrf_field() }}
+
+                                            <a class="btn btn-default" href="{{route('admin.post.edit',$post)}}"><i class="fa fa-edit"></i></a>
+
+                                            <button type="submit" class="btn"><i class="fa fa-trash-o"></i></button>
+                                        </form>
+
+                                    </td>
+                                </tr>
+                                @endforeach;
 
                             @else
-
+                            <tr>
                                 <td colspan="5" class="text-center"><h1>Постов нет</h1></td>
-
+                            </tr>
                             @endif
-                        </tr>
+
                     </table>
                 </div>
                 <div class="col-md-12 text-center">
-                    <a class="btn btn-primary btn-lg" href="{{route('admin.create')}}" role="button" >Создать пост</a>
+                    <a class="btn btn-primary btn-lg" href="{{route('admin.post.create')}}" role="button" >Создать пост</a>
                 </div>
             </div>
         </div>

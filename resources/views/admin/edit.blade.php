@@ -17,10 +17,10 @@
             <div class="row">
                 <div class="push-md-2 col-md-8">
 
-                    <form action="{{ route('admin.post.store') }}" method="post">
+                    <form class="form-horizontal" action="{{route('admin.post.update', $post)}}" method="post">
+                        <input type="hidden" name="_method" value="put">
                         {{ csrf_field() }}
-                        <input type="hidden" name="created_by" value="{{ Auth::id() }}" />
-                        {{--<input type="hidden" name="modified_by" value="{{Auth::id()}}">--}}
+                        <input type="hidden" name="modified_by" value="{{ Auth::id() }}" />
 
                         @include('admin.partials.form')
 
