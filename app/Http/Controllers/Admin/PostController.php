@@ -56,11 +56,14 @@ class PostController extends Controller
      */
     public function show($id)
     {
-
+        $posts = Post::all();
+        $users = User::all();
         $post = Post::where('id', $id)->first();
 
         return view('admin.show',[
-            'post' => $post
+            'post' => $post,
+            'posts'=> $posts,
+            'users'=>$users
         ]);
     }
 

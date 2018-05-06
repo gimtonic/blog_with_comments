@@ -8,17 +8,35 @@
                         <h1>Текущие посты этого сайта</h1>
                     </div>
 
-                        @foreach ($posts as $post)
-                    <div class="col-md-4">
-                            <a href="{{ route ('blog.show',$post->id) }}" class="text-center">
-                                <h1>{{ $post->title }}</h1>
-                            </a>
-                    </div>
-                    <div class="col-md-8">
-                                <p>{{ $post->short_description }}</p>
+                    <table class="table">
+                        <tr>
+                            <th class="text-center">Заголовок</th>
+                            <th class="text-center">Короткое описание</th>
+                        </tr>
 
-                    </div>
-                        @endforeach;
+                        {{-- Blade if and else --}}
+
+                        @if( $posts->count() )
+
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="{{ route ('blog.show',$post->id) }}" class="text-center">
+                                            <h1>{{ $post->title }}</h1>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">{{$post->short_description}}</td>
+
+                            @endforeach;
+
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center"><h1>Постов нет</h1></td>
+                            </tr>
+                        @endif
+
+                    </table>
+
                 </div>
 
                 </div>

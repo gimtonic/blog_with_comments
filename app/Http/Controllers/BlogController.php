@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
+
 use Illuminate\Http\Request;
 
 
@@ -19,10 +21,15 @@ class BlogController extends Controller
     public function show($id) {
 
         $post = Post::where('id', $id)->first();
+        $comments = Comment::all();
 
         return view('blog.show',[
-            'post' => $post
+            'post' => $post,
+            'comments'=>$comments
         ]);
     }
+
+
+
 
 }
