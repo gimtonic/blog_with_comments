@@ -25,12 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $users = User::all();
-        return view('admin.index',[
-            'posts'=> $posts,
-            'users'=>$users
-        ]);
+        return redirect()->route('admin.post.index');
+
     }
 
 }

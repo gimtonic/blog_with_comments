@@ -24,7 +24,6 @@
 
                         @include('admin.partials.form')
 
-
                     </form>
 
                 </div>

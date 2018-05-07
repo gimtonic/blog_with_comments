@@ -13,8 +13,7 @@ use \Illuminate\Support\Facades\DB;
 */
 Route::get('/','BlogController@index')->name('blog.index');
 Route::get('/blog/{id?}','BlogController@show')->name('blog.show');
-
-
+Route::resource('/comment','CommentController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth'] ], function () {
 

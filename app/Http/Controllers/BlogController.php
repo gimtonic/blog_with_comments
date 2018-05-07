@@ -21,15 +21,11 @@ class BlogController extends Controller
     public function show($id) {
 
         $post = Post::where('id', $id)->first();
-        $comments = Comment::all();
 
         return view('blog.show',[
-            'post' => $post,
-            'comments'=>$comments
+            'post' => $post
         ]);
     }
-
-
 
 
 }

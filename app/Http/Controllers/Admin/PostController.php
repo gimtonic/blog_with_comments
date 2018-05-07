@@ -6,7 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-
+use DB;
 class PostController extends Controller
 {
     /**
@@ -18,9 +18,11 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $users = User::all();
+        $comments = DB::table('comments')->count();
         return view('admin.index',[
             'posts'=> $posts,
-            'users'=>$users
+            'users'=>$users,
+            'comments' =>$comments
         ]);
     }
 

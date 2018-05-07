@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="jimbotron">
-                                <p class="text-center"><span class="label label-primary">Кол-во комментариев</span></p>
+                                <p class="text-center"><span class="label label-primary">Кол-во комментариев: {{$comments}}</span></p>
                             </div>
                         </div>
                     </div>
