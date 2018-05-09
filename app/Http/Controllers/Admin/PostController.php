@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use DB;
 
 class PostController extends Controller
 {
@@ -18,12 +18,15 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::paginate(7);
-        $users = User::all();
-        $comments = DB::table('comments')->count();
+        $postsCount = Post::count();
+        $usersCount = User::count();
+        $commentsCount = Comment::count();
+
         return view('admin.index',[
             'posts'=> $posts,
-            'users'=>$users,
-            'comments' =>$comments
+            'usersCount'=>$usersCount,
+            'commentsCount' =>$commentsCount,
+            'postsCount' =>$postsCount
         ]);
     }
 
@@ -59,14 +62,16 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $posts = Post::all();
-        $users = User::all();
+        $postsCount = Post::count();
+        $usersCount = User::count();
+        $commentsCount = Comment::count();
         $post = Post::where('id', $id)->first();
 
         return view('admin.show',[
             'post' => $post,
-            'posts'=> $posts,
-            'users'=>$users
+            'postsCount'=> $postsCount,
+            'usersCount'=>$usersCount,
+            'commentsCount'=>$commentsCount
         ]);
     }
 
@@ -107,6 +112,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->comments()->delete();
         $post->delete();
         return redirect()->route('admin.post.index');
     }

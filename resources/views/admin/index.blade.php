@@ -8,17 +8,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="jimbotron">
-                                <p class="text-center"><span class="label label-primary">Кол-во пользователей: {{$users->count()}} </span></p>
+                                <p class="text-center"><span class="label label-primary">Кол-во пользователей: {{$usersCount}} </span></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="jimbotron">
-                                <p class="text-center"><span class="label label-primary">Кол-во постов:   {{$posts->count()}}</span></p>
+                                <p class="text-center"><span class="label label-primary">Кол-во постов:   {{$postsCount}}</span></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="jimbotron">
-                                <p class="text-center"><span class="label label-primary">Кол-во комментариев: {{$comments}}</span></p>
+                                <p class="text-center"><span class="label label-primary">Кол-во комментариев: {{$commentsCount}}</span></p>
                             </div>
                         </div>
                     </div>
