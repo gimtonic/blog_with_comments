@@ -34,7 +34,14 @@
                                 <td colspan="5" class="text-center"><h1>Постов нет</h1></td>
                             </tr>
                         @endif
-
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3">
+                                            <ul class="pagination pull-right">
+                                                {{$posts->links()}}
+                                            </ul>
+                                    </tr>
+                                </tfoot>
                     </table>
 
                 </div>

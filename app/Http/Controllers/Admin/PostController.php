@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use DB;
+
 class PostController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(7);
         $users = User::all();
         $comments = DB::table('comments')->count();
         return view('admin.index',[

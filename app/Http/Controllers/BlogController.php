@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     public function index() {
 
-        $posts = Post::all()->where('published','Опубликовано');
+        $posts = Post::where('published','Опубликовано')->paginate(3);
         return view('blog.index',[
             'posts' => $posts
         ]);
