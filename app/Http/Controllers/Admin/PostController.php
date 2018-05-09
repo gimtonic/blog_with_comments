@@ -38,6 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {
+
         return view('admin.create');
     }
 
@@ -49,6 +50,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:200',
+            'short_description' => 'required|max:1000',
+            'long_description' => 'required|max:2000',
+        ]);
+
         Post::create($request->all());
 
         return redirect()->route('admin.post.index');
@@ -99,6 +106,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->validate($request, [
+            'title' => 'required|max:200',
+            'short_description' => 'required|max:1000',
+            'long_description' => 'required|max:2000',
+        ]);
+
         $post->update($request->except('id'));
 
         return redirect()->route('admin.post.index');

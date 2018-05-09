@@ -35,6 +35,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:200',
+            'description' => 'required|max:1000',
+        ]);
+
         Comment::create($request->all());
         return redirect()->back();
     }
@@ -72,6 +77,11 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+        $this->validate($request, [
+            'name' => 'required|max:200',
+            'description' => 'required|max:1000',
+        ]);
+
         $comment->update($request->all());
         return redirect()->route('admin.post.index');
     }
