@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,6 +103,9 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+
+
+    'faker_locale' => 'ru_RU',
 
     'key' => env('APP_KEY'),
 
@@ -176,7 +179,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*

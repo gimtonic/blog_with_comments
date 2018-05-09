@@ -8,8 +8,6 @@
         <option value="Опубликовано">Опубликовано</option>
     @endif
 </select>
-<label for="">ID</label>
-<input type="text" class="form-control" name="id" placeholder="ID" value="{{$post->id or ""}}" required>
 
 <label for="">Заголовок</label>
 <input type="text" class="form-control" name="title" placeholder="Заголовок новости" value="{{$post->title or ""}}" required>
