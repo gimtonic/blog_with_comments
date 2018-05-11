@@ -9,7 +9,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'title' => $faker->bank,
         'short_description' => $faker->realText(),
         'long_description' => $faker->realText($maxNbChars = 2000),
-        'published' => 'Опубликовано',
+        'status' => \App\Constants\PostStatus::PUBLISHED()->getKey(),
     ];
 
 });

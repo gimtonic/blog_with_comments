@@ -47,7 +47,7 @@
                                         </a>
                                     </td>
                                     <td class="text-center">{{$post->modified_at}}</td>
-                                    <td class="text-center">{{$post->published}}</td>
+                                    <td class="text-center">{{ $post->getStatus()}}</td>
                                     <td class="text-center">{{$post->title}}</td>
                                     <td class="text-right">
                                         <form onsubmit="if(confirm('Delete?')){return true}else{ return false }" action="{{route('admin.post.destroy',
